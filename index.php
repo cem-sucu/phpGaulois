@@ -19,7 +19,10 @@ catch (Exception $e){
     die('Erreur : ' .$e->getMessage());
 }
 
-$sqlQuery = 'SELECT nom_personnage FROM personnage';
+$sqlQuery = 'SELECT nom_personnage 
+                FROM personnage
+                -- filtre uniquement les persoonage qui ont 1 pour id --
+                WHERE id_lieu = 1 ';
 $Statement = $db->prepare($sqlQuery);
 $Statement->execute();
 $personnages = $Statement->fetchAll();

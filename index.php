@@ -9,7 +9,7 @@ $user = 'root';
 $password = '';
 
 try {
-    $mysqlConnection = new PDO(
+    $db = new PDO(
         'mysql:host='.$host.';dbname='.$name.';charset=utf8',
         $user,
         $password,
@@ -17,6 +17,19 @@ try {
 }
 catch (Exception $e){
     die('Erreur : ' .$e->getMessage());
+}
+
+$sqlQuery = 'SELECT nom_personnage FROM personnage';
+$Statement = $db->prepare($sqlQuery);
+$Statement->execute();
+$personnages = $Statement->fetchAll();
+// var_dump($personnage);
+
+
+foreach ($personnages as $personnage){
+?>
+    <p><?php echo $personnage['nom_personnage']; ?></p>
+<?php
 }
 
 

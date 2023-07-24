@@ -13,13 +13,14 @@ try {
         'mysql:host='.$host.';dbname='.$name.';charset=utf8',
         $user,
         $password,
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION], //permet d'afficher des erreur de requêtes bcp plus clair
     );
 }
 catch (Exception $e){
     die('Erreur : ' .$e->getMessage());
 }
 
-$sqlQuery = 'SELECT nom_personnage 
+$sqlQuery = 'SELECT nom_personnage
                 FROM personnage
                 -- filtre uniquement les persoonage qui ont 1 pour id --
                 WHERE id_lieu = 1 ';
